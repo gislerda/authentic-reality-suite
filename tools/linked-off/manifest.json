@@ -1,0 +1,47 @@
+{
+    "manifest_version": 3,
+    "name": "LinkedOFF",
+    "version": "1.0",
+    "description": "A parody tool to modify LinkedIn posts for fun.",
+    "permissions": [
+        "scripting",
+        "storage",
+        "activeTab"
+    ],
+    "host_permissions": [
+        "https://www.linkedin.com/*"
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "LinkedIN.png",
+                "LinkedOFF.png",
+                "buymeacoffee.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+    "action": {
+        "default_popup": "linkedoff.html",
+        "default_icon": "linkedoff_small.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.linkedin.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+    }
+}
